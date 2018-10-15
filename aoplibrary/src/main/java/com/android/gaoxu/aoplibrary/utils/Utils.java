@@ -9,8 +9,8 @@ import android.net.NetworkInfo;
 
 /**
  * <pre>
- *     author : Mark
- *     e-mail : makun.cai@aorise.org
+ *     author : gaoxu
+ *     e-mail : 511527070@qq.com
  *     time   : 2018/05/30
  *     desc   : 工具类
  *     version: 1.0

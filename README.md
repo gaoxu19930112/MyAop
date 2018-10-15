@@ -4,15 +4,29 @@
 
 ### 配置
 _____
+**1.在全局build里面添加下面github仓库地址**
 ```
-dependencies {
-    classpath 'com.gaoxu.plugin:aop-plugin:1.0.1'
+buildscript {
+    ...
+    dependencies {
+        classpath 'com.gaoxu.plugin:aop-plugin:1.0.1'
+    }
 }
-repositories {
-    maven {url 'https://dl.bintray.com/gaoxu930112/maven/'}
+allprojects {
+    repositories {
+        maven {url 'https://dl.bintray.com/gaoxu930112/maven/'}
+    }
 }
+```
+**2.在app的build里面添加插件和依赖**
+```
 apply plugin:'aop-plugin'
+...
+dependencies {
+    implementation 'com.github.gaoxu19930112:MyAop:1.0.4
+}
 ```
+
 ### 初始化
 _____
 自定义application的onCreate初始化……

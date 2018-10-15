@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * <pre>
- *     author : Mark
- *     e-mail : makun.cai@aorise.org
+ *     author : gaoxu
+ *     e-mail : 511527070@qq.com
  *     time   : 2018/05/30
  *     desc   : 切面编程帮助类
  *     version: 1.0
@@ -24,11 +24,7 @@ public class MyAOPHelper {
     private List<Method> mMethodList = new ArrayList<>();
     private HashMap<String, Object[]> mMethodArgs = new HashMap<>();
     private HashMap<String, Object> mTargets = new HashMap<>();
-    private AOPLibraryOptions mOptions;
     private Application mApplication;
-    private MyAOPHelper() {
-        mOptions = new AOPLibraryOptions();
-    }
 
     public static MyAOPHelper getInstance(){
         if (mInstance ==null){
@@ -43,7 +39,7 @@ public class MyAOPHelper {
 
     public void init(Application application){
         if (application==null){
-            throw new NullPointerException("MaikAOP init() Application is null");
+            throw new NullPointerException("MyAOP init() Application is null");
         }
         mApplication = application;
         mApplication.registerActivityLifecycleCallbacks(sLifecycleCallbacks);
@@ -54,14 +50,6 @@ public class MyAOPHelper {
             throw new NullPointerException("The MaikAOP is not initialized");
         }
         return mApplication;
-    }
-
-    public AOPLibraryOptions getOptions() {
-        return mOptions;
-    }
-
-    public List<Method> getMethodList() {
-        return mMethodList;
     }
 
     public HashMap<String, Object[]> getMethodArgs() {

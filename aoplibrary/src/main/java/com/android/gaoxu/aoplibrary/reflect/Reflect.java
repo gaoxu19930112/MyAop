@@ -14,9 +14,9 @@ import java.util.Map;
 
 /**
  * <pre>
- *     author : Mark
- *     e-mail : makun.cai@aorise.org
- *     time   : 2018/07/10
+ *     author : gaoxu
+ *     e-mail : 511527070@qq.com
+ *     time   : 2018/05/30
  *     desc   : 反射工具类
  *     version: 1.0
  * </pre>

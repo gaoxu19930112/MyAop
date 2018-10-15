@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
  *     author : gaoxu
  *     e-mail : xu.gao@aorise.org
  *     time   : 2018/10/08
- *     desc   :
+ *     desc   : 网络判断切面
  *     version: 1.0
  * </pre>
  */

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  *     author : gaoxu
  *     e-mail : xu.gao@aorise.org
  *     time   : 2018/10/08
- *     desc   :
+ *     desc   : 网络判断注解
  *     version: 1.0
  * </pre>
  */

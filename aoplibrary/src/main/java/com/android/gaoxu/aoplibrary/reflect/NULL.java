@@ -2,10 +2,10 @@ package com.android.gaoxu.aoplibrary.reflect;
 
 /**
  * <pre>
- *     author : Mark
- *     e-mail : makun.cai@aorise.org
- *     time   : 2018/07/10
- *     desc   : TODO
+ *     author : gaoxu
+ *     e-mail : 511527070@qq.com
+ *     time   : 2018/05/30
+ *     desc   :
  *     version: 1.0
  * </pre>
  */

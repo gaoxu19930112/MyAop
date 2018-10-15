@@ -9,10 +9,10 @@ import java.util.Stack;
 
 /**
  * <pre>
- *     author : tangjy
- *     e-mail : jianye.tang@aorise.org
- *     time   : 2017/03/17
- *     desc   : APP页面管理
+ *     author : gaoxu
+ *     e-mail : 511527070@qq.com
+ *     time   : 2018/05/30
+ *     desc   : APP页面管理类
  *     version: 1.0
  * </pre>
  */
