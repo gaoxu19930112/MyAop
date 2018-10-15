@@ -10,6 +10,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.compile.JavaCompile
 
 class AopPlugin implements Plugin<Project> {
+
     @Override
     void apply(Project project) {
         def hasApp = project.plugins.withType(AppPlugin)
