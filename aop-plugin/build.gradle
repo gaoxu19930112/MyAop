@@ -1,3 +1,4 @@
+/*
 apply plugin: 'groovy'
 apply plugin: "maven"
 
@@ -36,3 +37,4 @@ uploadArchives{
 
 // 应用插件
 apply from: '../bintray.gradle'
+*/
