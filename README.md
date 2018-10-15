@@ -29,7 +29,7 @@ dependencies {
 
 ### 初始化
 _____
-自定义application的onCreate初始化……
+**自定义application的onCreate初始化……**
 
     MyAOPHelper.getInstance().init(this);
 ### 使用
