@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.gaoxu.aoplibrary.R;
 import com.android.gaoxu.aoplibrary.annotation.CheckNet;
 import com.android.gaoxu.aoplibrary.reflect.Reflect;
 import com.android.gaoxu.aoplibrary.reflect.ReflectException;
@@ -30,6 +31,7 @@ import java.lang.reflect.Method;
  */
 @Aspect
 public class CheckNetAspect {
+    private static final String TAG = CheckNetAspect.class.getSimpleName();
     private static final String POINTCUT_METHOD =
             "execution(@com.android.gaoxu.aoplibrary.annotation.CheckNet * *(..))";
 
@@ -54,11 +56,12 @@ public class CheckNetAspect {
             } else if (target instanceof Fragment) {
                 fragmentActivity = ((Fragment) target).getActivity();
             } else {
-                throw new ReflectException("The annotation checkout can only be used in FragmentActivity or Fragment environment and its subclass environment");
+                throw new ReflectException("The annotation checkNet can only be used in FragmentActivity or Fragment environment and its subclass environment");
             }
             final FragmentActivity finalFragmentActivity = fragmentActivity;
             if (checkNet == null) {
-                Toast.makeText(finalFragmentActivity, "网络暂时不可用，请检查网络", Toast.LENGTH_LONG).show();
+                Toast.makeText(finalFragmentActivity, finalFragmentActivity
+                        .getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
                 return result;
             }
 
@@ -71,7 +74,8 @@ public class CheckNetAspect {
                     Log.e("mark", "no method " + notNetMethod);
                 }
             } else {
-                Toast.makeText(finalFragmentActivity, "网络暂时不可用，请检查网络", Toast.LENGTH_LONG).show();
+                Toast.makeText(finalFragmentActivity, finalFragmentActivity
+                        .getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
             }
 
         }

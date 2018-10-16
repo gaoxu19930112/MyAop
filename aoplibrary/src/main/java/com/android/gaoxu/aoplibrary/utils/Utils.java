@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 /**
  * <pre>
  *     author : gaoxu
- *     e-mail : 511527070@qq.com
+ *     e-mail : xu.gao@aorise.org
  *     time   : 2018/05/30
  *     desc   : 工具类
  *     version: 1.0
@@ -40,7 +40,7 @@ public class Utils {
         return manager.getActiveNetworkInfo();
     }
 
-    private static Context getApp() {
+    public static Context getApp() {
         return MyAOPHelper.getInstance().getApplication();
     }
 

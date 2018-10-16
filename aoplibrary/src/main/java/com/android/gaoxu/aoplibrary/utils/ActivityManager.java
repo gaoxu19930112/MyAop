@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * <pre>
  *     author : gaoxu
- *     e-mail : 511527070@qq.com
+ *     e-mail : xu.gao@aorise.org
  *     time   : 2018/05/30
  *     desc   : APP页面管理类
  *     version: 1.0
