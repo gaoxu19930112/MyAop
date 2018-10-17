@@ -42,7 +42,6 @@ import java.util.List;
  * </pre>
  */
 public class PermissionUtils {
-    private static final List<String> PERMISSIONS = getPermissions();
     private static String tag = "fragmentRequestPermissionCallBack";
     private static final int REQUEST_CODE = 110;
     private FragmentCallback mFragmentCallback;
@@ -216,9 +215,7 @@ public class PermissionUtils {
         List<String> list = new LinkedList<>();
         for (String permission : permissions) {
             for (String aPermission : PermissionConstants.getPermissions(permission)) {
-                if (PERMISSIONS.contains(aPermission)) {
                     list.add(aPermission);
-                }
             }
         }
         mPermissions = list.toArray(new String[list.size()]);
@@ -400,29 +397,6 @@ public class PermissionUtils {
             e.printStackTrace();
         }
         return permissionName;
-    }
-
-    public static List<String> getPermissions() {
-        return getPermissions(Utils.getApp().getPackageName());
-    }
-
-    /**
-     * Return the permissions used in application.
-     *
-     * @param packageName The name of the package.
-     * @return the permissions used in application
-     */
-    public static List<String> getPermissions(final String packageName) {
-        PackageManager pm = Utils.getApp().getPackageManager();
-        try {
-            return Arrays.asList(
-                    pm.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
-                            .requestedPermissions
-            );
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
     }
 
     /**

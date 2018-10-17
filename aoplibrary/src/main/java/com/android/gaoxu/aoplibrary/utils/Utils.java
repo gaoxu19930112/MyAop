@@ -20,8 +20,8 @@ public class Utils {
     /**
      * 打开网络设置界面
      */
-    public static void openWirelessSettings() {
-        Utils.getApp().startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
+    public static void openWirelessSettings(Context context) {
+        context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
@@ -33,16 +33,16 @@ public class Utils {
      * @return NetworkInfo
      */
     @SuppressLint("MissingPermission")
-    private static NetworkInfo getActiveNetworkInfo() {
+    private static NetworkInfo getActiveNetworkInfo(Context context) {
         ConnectivityManager manager =
-                (ConnectivityManager) Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (manager == null) return null;
         return manager.getActiveNetworkInfo();
     }
-
+/*
     public static Context getApp() {
         return MyAOPHelper.getInstance().getApplication();
-    }
+    }*/
 
     /**
      * 判断网络是否连接
@@ -51,8 +51,8 @@ public class Utils {
      *
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    public static boolean isConnected() {
-        NetworkInfo info = getActiveNetworkInfo();
+    public static boolean isConnected(Context context) {
+        NetworkInfo info = getActiveNetworkInfo(context);
         return info != null && info.isConnected();
     }
 }

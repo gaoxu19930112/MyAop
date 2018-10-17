@@ -1,9 +1,12 @@
 package com.android.gaoxu.aoplibrary.aspect;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.gaoxu.aoplibrary.R;
@@ -43,24 +46,17 @@ public class CheckNetAspect {
     @Around("methodAnnotated()")
     public Object aroundJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = null;
-        if (Utils.isConnected()) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        CheckNet checkNet = method.getAnnotation(CheckNet.class);
+        Object target = joinPoint.getTarget();
+        Context context = getContext(target);
+
+        if (Utils.isConnected(context) || context == null) {
             result = joinPoint.proceed();
         } else {
-            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-            Method method = signature.getMethod();
-            CheckNet checkNet = method.getAnnotation(CheckNet.class);
-            Object target = joinPoint.getTarget();
-            FragmentActivity fragmentActivity;
-            if (target instanceof FragmentActivity) {
-                fragmentActivity = (FragmentActivity) target;
-            } else if (target instanceof Fragment) {
-                fragmentActivity = ((Fragment) target).getActivity();
-            } else {
-                throw new ReflectException("The annotation checkNet can only be used in FragmentActivity or Fragment environment and its subclass environment");
-            }
-            final FragmentActivity finalFragmentActivity = fragmentActivity;
             if (checkNet == null) {
-                Toast.makeText(finalFragmentActivity, finalFragmentActivity
+                Toast.makeText(context, context
                         .getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
                 return result;
             }
@@ -68,17 +64,36 @@ public class CheckNetAspect {
             String notNetMethod = checkNet.notNetMethod();
             if (!TextUtils.isEmpty(notNetMethod)) {
                 try {
-                    Reflect.on(finalFragmentActivity).call(notNetMethod);
+                    Reflect.on(context).call(notNetMethod);
                 } catch (ReflectException e) {
                     e.printStackTrace();
-                    Log.e("mark", "no method " + notNetMethod);
+                    Log.e("提示", "no method " + notNetMethod);
                 }
             } else {
-                Toast.makeText(finalFragmentActivity, finalFragmentActivity
+                Toast.makeText(context, context
                         .getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
             }
 
         }
         return result;
+    }
+
+    /**
+     * 通过对象获取上下文
+     *
+     * @param object
+     * @return
+     */
+    private Context getContext(Object object) {
+        if (object instanceof Activity) {
+            return (Activity) object;
+        } else if (object instanceof Fragment) {
+            Fragment fragment = (Fragment) object;
+            return fragment.getActivity();
+        } else if (object instanceof View) {
+            View view = (View) object;
+            return view.getContext();
+        }
+        return null;
     }
 }
